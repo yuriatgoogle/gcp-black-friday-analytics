@@ -1,0 +1,38 @@
+{
+  "name": "twitter-pubsub",
+  "version": "0.0.1",
+  "description": "Get tweets, publish to PubSub",
+  "repository": "https://github.com/yuriatgoogle/twitter-pubsub-dataflow-bq.git",
+  "private": true,
+  "scripts": {
+    "start": "GCLOUD_PROJECT=ymg-twitter-node-dataflow-bq node twitter-pubsub.js",
+    "test": "samples test app",
+    "cover": "nyc --cache npm test; nyc report --reporter=html"
+  },
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Yuri Grinshteyn",
+      "email": "thegrinch@google.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "semistandard": {
+    "globals": [
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^0.14.2",
+    "http": "0.0.0",
+    "twit": "^2.2.9"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  }
+}
