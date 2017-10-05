@@ -150,7 +150,7 @@ public class TwitterProcessor {
 
         // Read tweets from Pub/Sub
         PCollection<String> tweets = null;
-        tweets = p.apply(PubsubIO.Read.named("Read tweets from PubSub").topic("projects/" + projectId + "/topics/blackfridaytweets"));
+        tweets = p.apply(PubsubIO.Read.named("Read tweets from PubSub").topic("projects/" + projectId + "/topics/tweets"));
 
         // Format tweets for BigQuery
         PCollection<TableRow> formattedTweets = tweets.apply(ParDo.named("Format tweets for BigQuery").of(new DoFormat()));
@@ -158,7 +158,7 @@ public class TwitterProcessor {
         // Create a TableReference for the destination table
         TableReference tableReference = new TableReference();
         tableReference.setProjectId(projectId);
-        tableReference.setDatasetId("black_friday_analytics");
+        tableReference.setDatasetId("twittermlanalytics");
         tableReference.setTableId("tweets_raw");
 
         // Write tweets to BigQuery
@@ -174,7 +174,7 @@ public class TwitterProcessor {
 		// Create a TableReference for the destination table
         TableReference filteredTableReference = new TableReference();
         filteredTableReference.setProjectId(projectId);
-        filteredTableReference.setDatasetId("black_friday_analytics");
+        filteredTableReference.setDatasetId("twittermlanalytics");
         filteredTableReference.setTableId("tweets_sentiment");
 
         // Write tweets to BigQuery
